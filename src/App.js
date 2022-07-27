@@ -11,32 +11,44 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [value, setValue] = useState("");
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/offers"
-      );
-      setData(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error.response); // différent du error.message d'Express sur back
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers"
+        );
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+
     fetchData();
   }, []);
 
   return (
     <div className="App">
       {isLoading ? (
-        <p>Chargement...</p>
+        <div className="loader">
+          <div class="lds-grid">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       ) : (
         <Router>
           <Header value={value} setValue={setValue} />
           <Routes>
             <Route path="/" element={<Home data={data} />} />
-            <Route path="/product/:id" element={<Offer />} />
+            <Route path="/offer/:id" element={<Offer />} />
           </Routes>
         </Router>
       )}
