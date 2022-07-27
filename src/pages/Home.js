@@ -1,4 +1,5 @@
 import heroImg from "../assets/img/hero-vinted.jpg";
+import dech from "../assets/img/dech.svg";
 import { Link } from "react-router-dom";
 
 const Home = ({ data }) => {
@@ -6,6 +7,7 @@ const Home = ({ data }) => {
     <main>
       <div className="home-hero">
         <img src={heroImg} alt="illustration vinted" />
+        <img className="up-hero" src={dech} alt="dechirure" />
         <div className="container">
           <div className="home-hero-ready">
             <p>Prêts à faire du tri dans vos placards ?</p>
