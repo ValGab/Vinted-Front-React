@@ -4,6 +4,7 @@
 
 :root {
   --main-color: #2cb1ba;
+  --second-color: #a2a2a2;
 }
 
 .container {
@@ -72,7 +73,7 @@ header input {
   width: 360px;
   background-color: white;
   border-radius: 3px;
-  border: 1px solid lightgray;
+  border: 1px solid var(--second-color);
   padding: 35px 20px;
   display: flex;
   flex-direction: column;
@@ -93,4 +94,66 @@ header input {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* OFFERS */
+
+.container-offers {
+  max-width: 1220px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 40px auto;
+}
+
+.offer {
+  display: flex;
+  flex-direction: column;
+  width: calc((100% - 60px) / 5);
+  text-decoration: none;
+}
+
+.owner {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.owner img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.owner p {
+  color: var(--second-color);
+  font-size: 12px;
+}
+
+.product-img {
+  width: 100%;
+  height: 380px;
+  margin-bottom: 10px;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-infos p {
+  margin-bottom: 4px;
+  color: black;
+}
+
+.product-infos p:not(:first-child) {
+  color: var(--second-color);
+  font-size: 12px;
 }

@@ -1,9 +1,10 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import Offer from "./pages/Offer";
 
 function App() {
   const [data, setData] = useState();
@@ -35,6 +36,7 @@ function App() {
           <Header value={value} setValue={setValue} />
           <Routes>
             <Route path="/" element={<Home data={data} />} />
+            <Route path="/product/:id" element={<Offer />} />
           </Routes>
         </Router>
       )}

@@ -1,4 +1,5 @@
 import heroImg from "../assets/img/hero-vinted.jpg";
+import { Link } from "react-router-dom";
 
 const Home = ({ data }) => {
   return (
@@ -12,22 +13,34 @@ const Home = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="offers">
+      <div className="container-offers">
         {data.offers.map((offer) => {
-          console.log(offer.owner.account.avatar.secure_url);
+          console.log(offer);
           return (
-            <div key={offer._id}>
-              <p>
+            <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
+              {offer.owner ? (
+                <div className="owner">
+                  <img
+                    src={offer.owner.account.avatar.secure_url}
+                    alt={offer.product_name}
+                  />
+                  <p>{offer.owner.account.username}</p>
+                </div>
+              ) : (
+                <div className="owner"></div>
+              )}
+              <div className="product-img">
                 <img
-                  src={offer.owner.account.avatar.secure_url}
+                  src={offer.product_image.secure_url}
                   alt={offer.product_name}
                 />
-              </p>
-              <img
-                src={offer.product_image.secure_url}
-                alt={offer.product_name}
-              />
-            </div>
+              </div>
+              <div className="product-infos">
+                <p>{offer.product_price.toFixed(2)} €</p>
+                <p>{offer.product_details[1].TAILLE}</p>
+                <p>{offer.product_details[0].MARQUE}</p>
+              </div>
+            </Link>
           );
         })}
       </div>
