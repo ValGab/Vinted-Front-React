@@ -1,9 +1,33 @@
 import heroImg from "../assets/img/hero-vinted.jpg";
 import dech from "../assets/img/dech.svg";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Loader from "../components/Loader";
 
-const Home = ({ data }) => {
-  return (
+const Home = () => {
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers"
+        );
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <main>
       <div className="home-hero">
         <img src={heroImg} alt="illustration vinted" />
