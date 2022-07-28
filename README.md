@@ -2,9 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+<<<<<<< HEAD
 ## NETLIFY
 
 ► https://musical-mousse-7cee82.netlify.app
+=======
+## NETLIFY 
+
+https://musical-mousse-7cee82.netlify.app
+>>>>>>> b9836ce4c0dd7ba9dea2be448033cee7ccfa3683
 
 ## Available Scripts
 
