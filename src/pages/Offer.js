@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loader from "../components/Loader";
 
 const Offer = () => {
   const [data, setData] = useState();
@@ -26,19 +27,7 @@ const Offer = () => {
   return (
     <div className="offer-body">
       {isLoading ? (
-        <div className="loader">
-          <div class="lds-grid">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
+        <Loader />
       ) : (
         <div className="offer-page">
           <div className="offer-page-img">

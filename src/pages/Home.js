@@ -21,13 +21,13 @@ const Home = ({ data }) => {
           return (
             <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
               {offer.owner ? (
-                <div className="owner">
+                <Link to="/owner" className="owner">
                   <img
                     src={offer.owner.account.avatar.secure_url}
                     alt={offer.product_name}
                   />
                   <p>{offer.owner.account.username}</p>
-                </div>
+                </Link>
               ) : (
                 <div className="owner"></div>
               )}
@@ -38,7 +38,7 @@ const Home = ({ data }) => {
                 />
               </div>
               <div className="product-infos">
-                <p>{offer.product_price.toFixed(2)} €</p>
+                <p>{offer.product_price} €</p>
                 <p>{offer.product_details[1].TAILLE}</p>
                 <p>{offer.product_details[0].MARQUE}</p>
               </div>
