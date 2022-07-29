@@ -3,7 +3,7 @@ import "../assets/css/loader.css";
 const Loader = () => {
   return (
     <div className="loader">
-      <div class="lds-grid">
+      <div className="lds-grid">
         <div></div>
         <div></div>
         <div></div>

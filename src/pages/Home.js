@@ -41,7 +41,6 @@ const Home = () => {
       </div>
       <div className="container-offers">
         {data.offers.map((offer) => {
-          console.log(offer);
           return (
             <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
               {offer.owner ? (
