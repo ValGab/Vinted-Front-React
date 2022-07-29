@@ -44,13 +44,13 @@ const Home = () => {
           return (
             <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
               {offer.owner ? (
-                <Link to="/owner" className="owner">
+                <div className="owner">
                   <img
                     src={offer.owner.account.avatar.secure_url}
                     alt={offer.product_name}
                   />
                   <p>{offer.owner.account.username}</p>
-                </Link>
+                </div>
               ) : (
                 <div className="owner"></div>
               )}

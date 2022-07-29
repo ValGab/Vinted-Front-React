@@ -40,12 +40,21 @@ const Header = ({ value, setValue }) => {
           <Link to="/">
             <img src={logo} alt="logo-vinted" />
           </Link>
-          <FontAwesomeIcon
-            icon="bars"
-            onClick={() => {
-              setMobileMenu(!mobileMenu);
-            }}
-          />
+          {!mobileMenu ? (
+            <FontAwesomeIcon
+              icon="bars"
+              onClick={() => {
+                setMobileMenu(!mobileMenu);
+              }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon="xmark"
+              onClick={() => {
+                setMobileMenu(!mobileMenu);
+              }}
+            />
+          )}
         </div>
         {mobileMenu && (
           <div className="mobile-menu">
