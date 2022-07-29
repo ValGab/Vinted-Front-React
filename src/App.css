@@ -384,13 +384,19 @@ header input {
 
   /* OFFER PAGE */
   .offer-page {
-    gap: 10px;
+    padding: 15px;
+    background-color: white;
     flex-direction: column;
     justify-content: unset;
   }
 
   .offer-page > div {
     width: 100%;
+  }
+
+  .offer-page-infos {
+    margin-top: 15px;
+    padding: 15px;
   }
 
   .offer-page-infos p,
