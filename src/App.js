@@ -15,25 +15,22 @@ library.add(faBars, faXmark);
 function App() {
   const [value, setValue] = useState("");
   const [user, setUser] = useState(null);
-
-  if (user) {
-    Cookies.set("token", user.token, { expires: 3 });
-  }
+  const [token, setToken] = useState(Cookies.get("token") || null);
 
   return (
     <div className="App">
       <Router>
-        <Header value={value} setValue={setValue} />
+        <Header value={value} setValue={setValue} token={token} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
           <Route
             path="/signup"
-            element={<Signup user={user} setUser={setUser} />}
+            element={<Signup token={token} setUser={setUser} />}
           />
           <Route
             path="/login"
-            element={<Login user={user} setUser={setUser} />}
+            element={<Login token={token} setUser={setUser} />}
           />
         </Routes>
       </Router>

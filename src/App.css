@@ -18,6 +18,14 @@ body {
   margin: 0 auto;
 }
 
+.link-decoration-none {
+  text-decoration: none;
+}
+
+.link-decoration-none:visited {
+  color: unset;
+}
+
 /* HEADER */
 .desktop-header {
   display: flex;
@@ -110,7 +118,8 @@ header input {
 }
 
 .home-hero-ready button,
-.offer-page-infos button {
+.offer-page-infos button,
+.form-inputs input[type="submit"] {
   font-size: 17px;
   width: 60%;
   height: 45px;
@@ -119,6 +128,10 @@ header input {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.form-inputs input[type="submit"] {
+  width: 100%;
 }
 
 /* OFFERS */
@@ -185,8 +198,12 @@ header input {
   font-size: 12px;
 }
 
-/* SIGNUP PAGE */
+/* SIGNUP-LOGIN PAGE */
 
+.form h1 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -201,6 +218,28 @@ header input {
 
 .form-inputs input {
   margin: 20px 0;
+}
+
+.form-inputs input[type="text"],
+.form-inputs input[type="mail"],
+.form-inputs input[type="password"] {
+  width: 100%;
+  background-color: #ebedee;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.newsletter label {
+  font-size: 15px;
+  line-height: 18px;
+  margin-left: 5px;
+}
+
+.newsletter p {
+  font-size: 12px;
+  line-height: 18px;
 }
 
 /* OFFER PAGE */
@@ -220,20 +259,20 @@ header input {
 }
 
 .offer-page-img {
-  width: 40%;
+  width: 45%;
   height: 100%;
 }
 
 .offer-page-img img {
   width: 100%;
-  height: 100%;
+  height: 75%;
   object-fit: cover;
   object-position: center;
 }
 
 .offer-page-infos {
   background-color: white;
-  height: 100%;
+  height: 75%;
   width: 40%;
   padding: 40px;
   display: flex;
@@ -341,7 +380,8 @@ MEDIA Q
   }
 
   .home-hero,
-  .offer-body {
+  .offer-body,
+  .form {
     margin-top: 120px;
   }
 
@@ -392,6 +432,11 @@ MEDIA Q
   .offer-page {
     display: flex;
     justify-content: space-around;
+  }
+
+  .offer-page-img img,
+  .offer-page-infos {
+    height: 100%;
   }
 }
 

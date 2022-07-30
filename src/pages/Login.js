@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const Login = ({ user, setUser }) => {
+const Login = ({ token, setUser }) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -17,7 +18,9 @@ const Login = ({ user, setUser }) => {
     setPassword(value);
   };
 
-  return (
+  return token ? (
+    <Navigate to="/" />
+  ) : (
     <div className="form container">
       <h1>Se connecter</h1>
       <form
@@ -34,6 +37,8 @@ const Login = ({ user, setUser }) => {
                 }
               );
               setUser(response.data);
+              // Création d'un cookie à la connexion !
+              Cookies.set("token", response.data.token, { expires: 3 });
               navigate("/");
             } catch (error) {
               console.log(error.response);
@@ -55,7 +60,7 @@ const Login = ({ user, setUser }) => {
           onChange={handleChangePassword}
         />
 
-        <input type="submit" className="button-fill" value="S'inscrire" />
+        <input type="submit" className="button-fill" value="Se connecter" />
       </form>
     </div>
   );

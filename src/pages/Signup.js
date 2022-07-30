@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-const Signup = ({ user, setUser }) => {
+import Cookies from "js-cookie";
+const Signup = ({ token, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
@@ -23,7 +23,7 @@ const Signup = ({ user, setUser }) => {
     setPassword(value);
   };
 
-  return !user ? (
+  return !token ? (
     <div className="form container">
       <h1>S'inscrire</h1>
       <form
@@ -46,6 +46,8 @@ const Signup = ({ user, setUser }) => {
               setPassword("");
               setNewsletter(false);
               setUser(response.data);
+              // Création d'un cookie à la création donc à la connexion !
+              Cookies.set("token", response.data.token, { expires: 3 });
             } catch (error) {
               console.log(error.response);
             }
@@ -87,7 +89,9 @@ const Signup = ({ user, setUser }) => {
         </div>
         <input type="submit" className="button-fill" value="S'inscrire" />
       </form>
-      <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
+      <Link to="/login" className="link-decoration-none">
+        Tu as déjà un compte ? Connecte-toi !
+      </Link>
     </div>
   ) : (
     <div className="form">

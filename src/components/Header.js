@@ -1,9 +1,10 @@
 import logo from "../assets/img/logo-vinted.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
-const Header = ({ value, setValue }) => {
+const Header = ({ value, setValue, token }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const handleChange = (event) => {
@@ -23,14 +24,29 @@ const Header = ({ value, setValue }) => {
           value={value}
           onChange={handleChange}
         />
-        <div className="register">
-          <Link to="/signup" className="button-header">
-            S'inscrire
-          </Link>
-          <Link to="/login" className="button-header">
-            Se connecter
-          </Link>
-        </div>
+        {!token ? (
+          <div className="register">
+            <Link to="/signup" className="button-header">
+              S'inscrire
+            </Link>
+            <Link to="/login" className="button-header">
+              Se connecter
+            </Link>
+          </div>
+        ) : (
+          <div className="register">
+            <Link
+              to="/"
+              className="button-header"
+              onClick={() => {
+                Cookies.remove("token");
+                Navigate("/");
+              }}
+            >
+              Se déconnecter
+            </Link>
+          </div>
+        )}
         <Link to="/login" className="button-header button-fill">
           Vends tes articles
         </Link>
@@ -58,15 +74,50 @@ const Header = ({ value, setValue }) => {
         </div>
         {mobileMenu && (
           <div className="mobile-menu">
-            <Link to="/login" className="button-header button-fill">
+            <Link
+              to="/login"
+              className="button-header button-fill"
+              onClick={() => {
+                setMobileMenu(!mobileMenu);
+              }}
+            >
               Vends tes articles
             </Link>
-            <Link to="/signup" className="button-header">
-              S'inscrire
-            </Link>
-            <Link to="/login" className="button-header">
-              Se connecter
-            </Link>
+            {!token && (
+              <Link
+                to="/signup"
+                className="button-header"
+                onClick={() => {
+                  setMobileMenu(!mobileMenu);
+                }}
+              >
+                S'inscrire
+              </Link>
+            )}
+            {!token && (
+              <Link
+                to="/login"
+                className="button-header"
+                onClick={() => {
+                  setMobileMenu(!mobileMenu);
+                }}
+              >
+                Se connecter
+              </Link>
+            )}
+            {token && (
+              <Link
+                to="/"
+                className="button-header"
+                onClick={() => {
+                  Cookies.remove("token");
+                  Navigate("/");
+                  setMobileMenu(!mobileMenu);
+                }}
+              >
+                Se déconnecter
+              </Link>
+            )}
           </div>
         )}
         <div className="mobile-search">
