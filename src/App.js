@@ -26,11 +26,25 @@ function App() {
           <Route path="/offer/:id" element={<Offer />} />
           <Route
             path="/signup"
-            element={<Signup token={token} setUser={setUser} />}
+            element={
+              <Signup
+                token={token}
+                setToken={setToken}
+                user={user}
+                setUser={setUser}
+              />
+            }
           />
           <Route
             path="/login"
-            element={<Login token={token} setUser={setUser} />}
+            element={
+              <Login
+                token={token}
+                setToken={setToken}
+                user={user}
+                setUser={setUser}
+              />
+            }
           />
         </Routes>
       </Router>
