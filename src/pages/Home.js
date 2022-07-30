@@ -6,7 +6,7 @@ import axios from "axios";
 import Loader from "../components/Loader";
 
 const Home = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -43,17 +43,15 @@ const Home = () => {
         {data.offers.map((offer) => {
           return (
             <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
-              {offer.owner ? (
-                <div className="owner">
+              <div className="owner">
+                {offer.owner && (
                   <img
                     src={offer.owner.account.avatar.secure_url}
                     alt={offer.product_name}
                   />
-                  <p>{offer.owner.account.username}</p>
-                </div>
-              ) : (
-                <div className="owner"></div>
-              )}
+                )}
+                {offer.owner && <p>{offer.owner.account.username}</p>}
+              </div>
               <div className="product-img">
                 <img
                   src={offer.product_image.secure_url}
