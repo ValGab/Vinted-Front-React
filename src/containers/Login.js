@@ -31,7 +31,7 @@ const Login = ({ token, setToken, setUser, setUsername }) => {
           const fetchData = async () => {
             try {
               const response = await axios.post(
-                "https://lereacteur-vinted-api.herokuapp.com/user/login",
+                "https://vinted-val.herokuapp.com/user/login",
                 {
                   email: mail,
                   password: password,

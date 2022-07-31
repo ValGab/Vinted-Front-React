@@ -46,7 +46,7 @@ const Home = ({ search, setSearch }) => {
           console.log(query);
         }
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers${query}`
+          `https://vinted-val.herokuapp.com/offers${query}`
         );
         setData(response.data);
         setIsLoading(false);
