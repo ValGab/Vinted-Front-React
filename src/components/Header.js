@@ -1,27 +1,41 @@
 import logo from "../assets/img/logo-vinted.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
-const Header = ({ value, setValue, user, token }) => {
+const Header = ({
+  search,
+  setSearch,
+  username,
+  setUsername,
+  token,
+  setToken,
+}) => {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const value = event.target.value;
-    setValue(value);
+    setSearch(value);
   };
 
   return (
     <header className="container">
       <div className="desktop-header">
         <Link to="/">
-          <img src={logo} alt="logo-vinted" />
+          <img
+            src={logo}
+            alt="logo-vinted"
+            onClick={() => {
+              setSearch("");
+            }}
+          />
         </Link>
         <input
           type="text"
           placeholder="Recherche des articles"
-          value={value}
+          value={search}
           onChange={handleChange}
         />
         {!token ? (
@@ -35,13 +49,16 @@ const Header = ({ value, setValue, user, token }) => {
           </div>
         ) : (
           <div className="register">
-            {user && <p>Bienvenue {user.account.username} !</p>}
+            {username && <p>Bienvenue {Cookies.get("username")} !</p>}
             <Link
               to="/"
               className="button-header"
               onClick={() => {
                 Cookies.remove("token");
-                Navigate("/");
+                Cookies.remove("username");
+                setToken(null);
+                setUsername(null);
+                navigate("/");
               }}
             >
               Se déconnecter
@@ -119,7 +136,10 @@ const Header = ({ value, setValue, user, token }) => {
                 className="button-header"
                 onClick={() => {
                   Cookies.remove("token");
-                  Navigate("/");
+                  Cookies.remove("username");
+                  setToken(null);
+                  setUsername(null);
+                  navigate("/");
                   setMobileMenu(!mobileMenu);
                 }}
               >
@@ -133,7 +153,7 @@ const Header = ({ value, setValue, user, token }) => {
             className="mobile search"
             type="text"
             placeholder="Recherche des articles"
-            value={value}
+            value={search}
             onChange={handleChange}
           />
         </div>

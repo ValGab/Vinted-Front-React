@@ -14,16 +14,25 @@ import Footer from "./components/Footer";
 library.add(faBars, faXmark);
 
 function App() {
-  const [value, setValue] = useState("");
+  const [search, setSearch] = useState("");
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState(Cookies.get("username") || null);
   const [token, setToken] = useState(Cookies.get("token") || null);
 
   return (
     <div className="App">
       <Router>
-        <Header value={value} setValue={setValue} token={token} user={user} />
+        <Header
+          search={search}
+          setSearch={setSearch}
+          token={token}
+          username={username}
+        />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home search={search} setSearch={setSearch} />}
+          />
           <Route path="/offer/:id" element={<Offer />} />
           <Route
             path="/signup"
@@ -44,6 +53,8 @@ function App() {
                 setToken={setToken}
                 user={user}
                 setUser={setUser}
+                username={username}
+                setUsername={setUsername}
               />
             }
           />

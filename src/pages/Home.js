@@ -4,24 +4,14 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
-import Cookies from "js-cookie";
 
-const Home = () => {
+const Home = ({ search, setSearch }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(0);
-  const [limit, setLimit] = useState(Number(Cookies.get("limit")) || 10);
+  const [limit, setLimit] = useState(10);
   // const [page, setPage] = useState(1);
   // const [skip, setSkip] = useState(limit * page);
-
-  let query = "?";
-  // if (page) {
-  //   query = query + `page=${page} + &`;
-  // }
-
-  if (limit) {
-    query = query + `limit=${limit} + &`;
-  }
 
   let round = 0;
   let dizaine = 0;
@@ -42,6 +32,19 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        let query = "?";
+        // if (page) {
+        //   query = query + `page=${page} + &`;
+        // }
+
+        if (limit) {
+          query = query + `limit=${limit}&`;
+        }
+
+        if (search.length > 2) {
+          query = query + `title=${search}&`;
+          console.log(query);
+        }
         const response = await axios.get(
           `https://lereacteur-vinted-api.herokuapp.com/offers${query}`
         );
@@ -54,7 +57,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, [query]);
+  }, [limit, search]);
 
   return isLoading ? (
     <Loader />
@@ -75,13 +78,7 @@ const Home = () => {
           {/* Map sur les dizaines du tableau limit */}
           {arrayLimit.map((element, index) => {
             return (
-              <option
-                key={index}
-                value={element}
-                onClick={() => {
-                  setLimit(Cookies.set("limit", element, { expires: 3 }));
-                }}
-              >
+              <option key={index} value={element}>
                 {element}
               </option>
             );
@@ -91,7 +88,14 @@ const Home = () => {
       <div className="container-offers">
         {data.offers.map((offer) => {
           return (
-            <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
+            <Link
+              to={`/offer/${offer._id}`}
+              className="offer"
+              key={offer._id}
+              onClick={() => {
+                setSearch("");
+              }}
+            >
               <div className="owner">
                 {offer.owner && offer.owner.account.avatar && (
                   <img
