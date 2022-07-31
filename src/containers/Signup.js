@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
-const Signup = ({ token, setUser }) => {
+const Signup = ({ token, setToken, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
@@ -48,7 +48,9 @@ const Signup = ({ token, setUser }) => {
               setNewsletter(false);
               setUser(response.data);
               // Création d'un cookie à la création donc à la connexion !
-              Cookies.set("token", response.data.token, { expires: 3 });
+              setToken(
+                Cookies.set("token", response.data.token, { expires: 3 })
+              );
             } catch (error) {
               setError(error.response.data.message);
               setUsername("");
@@ -81,6 +83,7 @@ const Signup = ({ token, setUser }) => {
         <div className="newsletter">
           <input
             type="checkbox"
+            checked={newsletter ? true : false}
             onChange={() => {
               setNewsletter(!newsletter);
             }}

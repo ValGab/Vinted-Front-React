@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
-const Header = ({ value, setValue, token }) => {
+const Header = ({ value, setValue, user, token }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const handleChange = (event) => {
@@ -35,6 +35,7 @@ const Header = ({ value, setValue, token }) => {
           </div>
         ) : (
           <div className="register">
+            {user && <p>Bienvenue {user.account.username} !</p>}
             <Link
               to="/"
               className="button-header"

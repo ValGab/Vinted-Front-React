@@ -54,6 +54,13 @@ header input {
 .register {
   display: flex;
   gap: 20px;
+  align-items: center;
+}
+.register p {
+  font-size: 15px;
+  color: var(--second-color);
+  font-weight: bold;
+  margin-right: -5px;
 }
 
 .button-header {
@@ -136,12 +143,34 @@ header input {
 
 /* OFFERS */
 
+.limit {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.limit select {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--main-color);
+  border-radius: 5px;
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  border-color: var(--main-color);
+  outline: none;
+}
+
+.limit option {
+  background-color: white;
+}
+
 .container-offers {
   max-width: 1220px;
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin: 40px auto;
+  margin: 10px auto;
 }
 
 .offer {
@@ -269,6 +298,7 @@ header input {
 
 .offer-page-img img {
   width: 100%;
+  max-height: 620px;
   object-fit: cover;
   object-position: center;
 }
@@ -276,6 +306,7 @@ header input {
 .offer-page-infos {
   background-color: white;
   width: 40%;
+  height: 620px;
   padding: 40px;
   display: flex;
   flex-direction: column;

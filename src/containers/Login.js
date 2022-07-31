@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const Login = ({ token, setUser }) => {
+const Login = ({ token, setToken, setUser }) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,7 +39,9 @@ const Login = ({ token, setUser }) => {
               );
               setUser(response.data);
               // Création d'un cookie à la connexion !
-              Cookies.set("token", response.data.token, { expires: 3 });
+              setToken(
+                Cookies.set("token", response.data.token, { expires: 3 })
+              );
               navigate("/");
             } catch (error) {
               setError(error.response.data.message);

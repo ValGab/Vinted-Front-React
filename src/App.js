@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header value={value} setValue={setValue} token={token} />
+        <Header value={value} setValue={setValue} token={token} user={user} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:id" element={<Offer />} />
