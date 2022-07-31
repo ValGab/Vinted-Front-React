@@ -7,6 +7,7 @@ const Signup = ({ token, setUser }) => {
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChangeUsername = (event) => {
     const value = event.target.value;
@@ -49,7 +50,11 @@ const Signup = ({ token, setUser }) => {
               // Création d'un cookie à la création donc à la connexion !
               Cookies.set("token", response.data.token, { expires: 3 });
             } catch (error) {
-              console.log(error.response);
+              setError(error.response.data.message);
+              setUsername("");
+              setMail("");
+              setPassword("");
+              setNewsletter(false);
             }
           };
           fetchData();
@@ -88,6 +93,7 @@ const Signup = ({ token, setUser }) => {
           </p>
         </div>
         <input type="submit" className="button-fill" value="S'inscrire" />
+        {error && <p className="form error">{error}</p>}
       </form>
       <Link to="/login" className="link-decoration-none">
         Tu as déjà un compte ? Connecte-toi !

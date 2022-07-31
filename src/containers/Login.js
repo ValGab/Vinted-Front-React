@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 const Login = ({ token, setUser }) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChangeMail = (event) => {
@@ -41,7 +42,8 @@ const Login = ({ token, setUser }) => {
               Cookies.set("token", response.data.token, { expires: 3 });
               navigate("/");
             } catch (error) {
-              console.log(error.response);
+              setError(error.response.data.message);
+              setPassword("");
             }
           };
           fetchData();
@@ -61,6 +63,7 @@ const Login = ({ token, setUser }) => {
         />
 
         <input type="submit" className="button-fill" value="Se connecter" />
+        {error && <p className="form error">{error}</p>}
       </form>
     </div>
   );

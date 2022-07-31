@@ -53,7 +53,14 @@ const Header = ({ value, setValue, token }) => {
       </div>
       <div className="mobile-header">
         <div className="mobile-top-header">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              if (mobileMenu === true) {
+                setMobileMenu(!mobileMenu);
+              }
+            }}
+          >
             <img src={logo} alt="logo-vinted" />
           </Link>
           {!mobileMenu ? (

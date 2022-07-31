@@ -44,7 +44,7 @@ const Home = () => {
           return (
             <Link to={`/offer/${offer._id}`} className="offer" key={offer._id}>
               <div className="owner">
-                {offer.owner && (
+                {offer.owner && offer.owner.account.avatar && (
                   <img
                     src={offer.owner.account.avatar.secure_url}
                     alt={offer.product_name}

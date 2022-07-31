@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import Signup from "./containers/Signup";
+import Login from "./containers/Login";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./components/Footer";
 library.add(faBars, faXmark);
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
