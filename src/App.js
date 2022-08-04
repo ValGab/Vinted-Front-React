@@ -17,6 +17,7 @@ library.add(faBars, faXmark, faSearch);
 function App() {
   const [search, setSearch] = useState("");
   const [priceSort, setPriceSort] = useState("price-asc");
+  const [priceMinMax, setPriceMinMax] = useState([0, 150]);
   const [username, setUsername] = useState(Cookies.get("username") || null);
   const [token, setToken] = useState(Cookies.get("token") || null);
 
@@ -42,6 +43,8 @@ function App() {
           username={username}
           setUsername={setUsername}
           setUserToken={setUserToken}
+          priceMinMax={priceMinMax}
+          setPriceMinMax={setPriceMinMax}
         />
         <Routes>
           <Route
@@ -52,6 +55,8 @@ function App() {
                 setSearch={setSearch}
                 priceSort={priceSort}
                 setPriceSort={setPriceSort}
+                priceMinMax={priceMinMax}
+                setPriceMinMax={setPriceMinMax}
               />
             }
           />

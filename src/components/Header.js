@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import TwoThumbs from "./TwoThumbs";
 
 const Header = ({
   search,
@@ -13,6 +14,8 @@ const Header = ({
   setUsername,
   token,
   setUserToken,
+  priceMinMax,
+  setPriceMinMax,
 }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const navigate = useNavigate();
@@ -50,28 +53,34 @@ const Header = ({
               onChange={handleChange}
             />
           </div>
-          <div className="price-sort">
-            <span>Trier par prix : </span>
-            {priceSort === "price-desc" && (
-              <button
-                className="button-fill"
-                onClick={() => {
-                  setPriceSort("price-asc");
-                }}
-              >
-                croissant
-              </button>
-            )}
-            {priceSort === "price-asc" && (
-              <button
-                className="button-fill"
-                onClick={() => {
-                  setPriceSort("price-desc");
-                }}
-              >
-                décroissant
-              </button>
-            )}
+          <div className="price-filters">
+            <div className="price-sort">
+              <span>Trier par prix : </span>
+              {priceSort === "price-desc" && (
+                <button
+                  className="button-fill"
+                  onClick={() => {
+                    setPriceSort("price-asc");
+                  }}
+                >
+                  croissant
+                </button>
+              )}
+              {priceSort === "price-asc" && (
+                <button
+                  className="button-fill"
+                  onClick={() => {
+                    setPriceSort("price-desc");
+                  }}
+                >
+                  décroissant
+                </button>
+              )}
+            </div>
+            <TwoThumbs
+              priceMinMax={priceMinMax}
+              setPriceMinMax={setPriceMinMax}
+            />
           </div>
         </div>
         {!token ? (

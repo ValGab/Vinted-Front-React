@@ -26,12 +26,16 @@ body {
   color: unset;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 /* HEADER */
 .desktop-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 110px;
 }
 
 .mobile-header {
@@ -43,7 +47,7 @@ header img {
 }
 
 .filters {
-  width: 40%;
+  width: 45%;
   display: flex;
   flex-direction: column;
 }
@@ -62,7 +66,7 @@ header img {
 }
 
 .search input {
-  width: 85%;
+  width: 100%;
   background-color: #ebedee;
   border: none;
   outline: none;
@@ -70,8 +74,32 @@ header img {
   font-size: 16px;
 }
 
+.price-filters {
+  display: flex;
+  width: 100%;
+}
+
+.price-range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.price-range span {
+  width: 40%;
+}
+
+.range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .price-sort {
   margin-top: 10px;
+  width: 50%;
 }
 
 .price-sort button {

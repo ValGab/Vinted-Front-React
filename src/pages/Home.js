@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
 
-const Home = ({ search, setSearch, priceSort }) => {
+const Home = ({ search, setSearch, priceSort, priceMinMax }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(0);
@@ -58,6 +58,11 @@ const Home = ({ search, setSearch, priceSort }) => {
           query = query + `sort=${priceSort}&`;
         }
 
+        if (priceMinMax) {
+          query = query + `priceMin=${priceMinMax[0]}&`;
+          query = query + `priceMax=${priceMinMax[1]}&`;
+        }
+
         const response = await axios.get(
           `https://vinted-val.herokuapp.com/offers${query}`
         );
@@ -70,7 +75,7 @@ const Home = ({ search, setSearch, priceSort }) => {
     };
 
     fetchData();
-  }, [limit, search, page, priceSort]);
+  }, [limit, search, page, priceSort, priceMinMax]);
 
   return isLoading ? (
     <Loader />
@@ -105,13 +110,24 @@ const Home = ({ search, setSearch, priceSort }) => {
           pageNumbers.map((element, index) => {
             return (
               <li key={index}>
-                <span
-                  onClick={() => {
-                    setPage(element);
-                  }}
-                >
-                  {element}
-                </span>
+                {page === element ? (
+                  <span
+                    className="bold"
+                    onClick={() => {
+                      setPage(element);
+                    }}
+                  >
+                    {element}
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => {
+                      setPage(element);
+                    }}
+                  >
+                    {element}
+                  </span>
+                )}
                 <span> -</span>
               </li>
             );
