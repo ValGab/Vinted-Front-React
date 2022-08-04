@@ -42,13 +42,42 @@ header img {
   width: 110px;
 }
 
-header input {
+.filters {
   width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search svg {
+  background-color: #ebedee;
+  height: 21px;
+  padding: 9px;
+  cursor: pointer;
+}
+
+.search input {
+  width: 85%;
   background-color: #ebedee;
   border: none;
   outline: none;
   padding: 10px;
   font-size: 16px;
+}
+
+.price-sort {
+  margin-top: 10px;
+}
+
+.price-sort button {
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
 }
 
 .register {
@@ -165,12 +194,39 @@ header input {
   background-color: white;
 }
 
+.page-list {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.page-list li {
+  margin-right: 5px;
+}
+
+.page-list li span:first-child {
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+.page-list li:last-child span:last-child {
+  display: none;
+}
+
 .container-offers {
   max-width: 1220px;
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
   margin: 10px auto;
+}
+
+.no-result {
+  font-size: 25px;
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .offer {
@@ -431,7 +487,7 @@ MEDIA Q
   .home-hero,
   .offer-body,
   .form {
-    margin-top: 120px;
+    margin-top: 110px;
   }
 
   .mobile-top-header {
@@ -461,13 +517,29 @@ MEDIA Q
   }
 
   .mobile-search {
-    display: block;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
     width: 100%;
   }
 
+  .mobile-search svg {
+    background-color: #ebedee;
+    padding: 5px;
+    height: 20px;
+    cursor: pointer;
+  }
+
   .mobile-search input {
-    margin-top: 10px;
-    width: 100%;
+    width: 90%;
+    background-color: #ebedee;
+    outline: none;
+    border: none;
+    height: 30px;
+    padding: 5px;
   }
 
   .offer {

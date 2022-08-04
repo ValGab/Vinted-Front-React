@@ -7,10 +7,12 @@ import Cookies from "js-cookie";
 const Header = ({
   search,
   setSearch,
+  priceSort,
+  setPriceSort,
   username,
   setUsername,
   token,
-  setToken,
+  setUserToken,
 }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const navigate = useNavigate();
@@ -32,12 +34,46 @@ const Header = ({
             }}
           />
         </Link>
-        <input
-          type="text"
-          placeholder="Recherche des articles"
-          value={search}
-          onChange={handleChange}
-        />
+        <div className="filters">
+          <div className="search">
+            <FontAwesomeIcon
+              icon="search"
+              onClick={() => {
+                setSearch(search);
+                navigate("/");
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Recherche des articles"
+              value={search}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="price-sort">
+            <span>Trier par prix : </span>
+            {priceSort === "price-desc" && (
+              <button
+                className="button-fill"
+                onClick={() => {
+                  setPriceSort("price-asc");
+                }}
+              >
+                croissant
+              </button>
+            )}
+            {priceSort === "price-asc" && (
+              <button
+                className="button-fill"
+                onClick={() => {
+                  setPriceSort("price-desc");
+                }}
+              >
+                décroissant
+              </button>
+            )}
+          </div>
+        </div>
         {!token ? (
           <div className="register">
             <Link to="/signup" className="button-header">
@@ -54,9 +90,8 @@ const Header = ({
               to="/"
               className="button-header"
               onClick={() => {
-                Cookies.remove("token");
+                setUserToken(null);
                 Cookies.remove("username");
-                setToken(null);
                 setUsername(null);
                 navigate("/");
               }}
@@ -65,7 +100,7 @@ const Header = ({
             </Link>
           </div>
         )}
-        <Link to="/login" className="button-header button-fill">
+        <Link to="/publish" className="button-header button-fill">
           Vends tes articles
         </Link>
       </div>
@@ -74,6 +109,7 @@ const Header = ({
           <Link
             to="/"
             onClick={() => {
+              setSearch("");
               if (mobileMenu === true) {
                 setMobileMenu(!mobileMenu);
               }
@@ -100,7 +136,7 @@ const Header = ({
         {mobileMenu && (
           <div className="mobile-menu">
             <Link
-              to="/login"
+              to="/publish"
               className="button-header button-fill"
               onClick={() => {
                 setMobileMenu(!mobileMenu);
@@ -135,9 +171,8 @@ const Header = ({
                 to="/"
                 className="button-header"
                 onClick={() => {
-                  Cookies.remove("token");
+                  setUserToken(null);
                   Cookies.remove("username");
-                  setToken(null);
                   setUsername(null);
                   navigate("/");
                   setMobileMenu(!mobileMenu);
@@ -149,8 +184,14 @@ const Header = ({
           </div>
         )}
         <div className="mobile-search">
+          <FontAwesomeIcon
+            icon="search"
+            onClick={() => {
+              setSearch(search);
+              navigate("/");
+            }}
+          />
           <input
-            className="mobile search"
             type="text"
             placeholder="Recherche des articles"
             value={search}
