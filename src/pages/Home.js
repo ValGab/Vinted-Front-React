@@ -26,7 +26,7 @@ const Home = ({ search, setSearch, priceSort, priceMinMax }) => {
       if (page * 10 <= count) {
         arrayLimit.push(i * 10);
       }
-      if (limit * i - limit <= count) {
+      if (limit * i - limit < count) {
         pageNumbers.push(i);
       }
     }

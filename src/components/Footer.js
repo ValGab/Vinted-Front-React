@@ -8,7 +8,7 @@ const Footer = () => {
         </a>{" "}
         at{" "}
         <a href="https://www.lereacteur.io/" target="_blank" rel="noreferrer">
-          Le Réacteur
+          Le Reacteur
         </a>{" "}
         by{" "}
         <a
