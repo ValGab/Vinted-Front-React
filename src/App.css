@@ -497,6 +497,7 @@ header img {
 
 .publish-section > div > label {
   width: 45%;
+  margin-top: 5px;
 }
 
 .publish-section > div > input,
@@ -509,13 +510,30 @@ header img {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 15px;
+  padding: 5px;
 }
 
-.publish-form button {
+.publish-form button,
+.publicated button {
   height: 40px;
   border: none;
   font-size: 18px;
   cursor: pointer;
+}
+
+.publicated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.publicated p {
+  font-size: 18px;
+  margin: 25px 0;
+}
+
+.publicated button {
+  padding: 10px;
 }
 
 /* FOOTER */
