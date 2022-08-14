@@ -43,15 +43,15 @@ const CheckoutForm = ({ price, description, token, title }) => {
           },
         }
       );
-      console.log(response.data);
-      setIsLoading(false);
+      console.log("response.data ==>", response.data);
       // Si la réponse du serveur est favorable, la transaction a eu lieu
       if (response.status === 200) {
         setCompleted(true);
       }
     } catch (error) {
-      console.log(error.response);
+      console.log("error.response ==>", error.response);
     }
+    setIsLoading(false);
   };
 
   return (
