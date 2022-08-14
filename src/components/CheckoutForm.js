@@ -19,14 +19,15 @@ const CheckoutForm = ({ price, description, token, title }) => {
     try {
       // On récupère ici les données bancaires que l'utilisateur rentre
       const cardElement = elements.getElement(CardElement);
-
+      console.log("cardElement =>", cardElement);
       // Demande de création d'un token via l'API Stripe
       // On envoie les données bancaires dans la requête
       const stripeResponse = await stripe.createToken(cardElement, {
         name: token,
       });
+      console.log("Stripe response =>", stripeResponse);
       const stripeToken = stripeResponse.token.id;
-      // console.log(stripeToken);
+      console.log("Stripe token =>", stripeToken, amount, description);
       // Une fois le token reçu depuis l'API Stripe
       // Requête vers notre serveur
       // On envoie le token reçu depuis l'API Stripe
@@ -47,9 +48,10 @@ const CheckoutForm = ({ price, description, token, title }) => {
       // Si la réponse du serveur est favorable, la transaction a eu lieu
       if (response.status === 200) {
         setCompleted(true);
+        console.log("Status = 200", response.status);
       }
     } catch (error) {
-      console.log("error.response ==>", error.response);
+      console.log("error ==>", error);
     }
     setIsLoading(false);
   };
