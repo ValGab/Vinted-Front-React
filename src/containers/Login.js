@@ -44,7 +44,7 @@ const Login = ({ token, setToken, setUsername, setUserToken }) => {
                   expires: 3,
                 })
               );
-              navigate("/");
+              navigate("/publish");
             } catch (error) {
               setError(error.response.data.message);
               setPassword("");

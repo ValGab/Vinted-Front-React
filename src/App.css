@@ -498,6 +498,7 @@ header img {
 .publish-section > div > label {
   width: 45%;
   margin-top: 5px;
+  font-weight: bold;
 }
 
 .publish-section > div > input,
@@ -534,6 +535,51 @@ header img {
 
 .publicated button {
   padding: 10px;
+}
+
+.offer-preview {
+  display: flex;
+  align-items: center;
+  background-color: #ebedee;
+  width: 60%;
+  margin: 25px 0;
+  padding: 15px;
+  transition-duration: 200ms;
+}
+
+.offer-preview,
+.offer-preview:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.offer-preview:hover {
+  opacity: 0.8;
+}
+
+.offer-preview img {
+  width: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.offer-preview-infos {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.offer-preview-infos p {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 10px 0;
+}
+
+.offer-preview-infos p:first-child,
+.offer-preview-infos p:last-child {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
 }
 
 /* FOOTER */
@@ -584,6 +630,8 @@ MEDIA Q
 
   .home-hero,
   .offer-body,
+  .publish-form,
+  .publicated,
   .form {
     margin-top: 110px;
   }
@@ -662,6 +710,11 @@ MEDIA Q
   .offer-page-infos button,
   .details {
     margin: 15px 0;
+  }
+
+  .offer-preview {
+    display: flex;
+    flex-direction: column;
   }
 }
 

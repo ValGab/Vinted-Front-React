@@ -1,6 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+// import Dropzone from "../components/Dropzone";
 
 const Publish = ({ token }) => {
   const [title, setTitle] = useState("");
@@ -61,6 +63,7 @@ const Publish = ({ token }) => {
                 setFile(event.target.files[0]);
               }}
             />
+            {/* <Dropzone file={file} setFile={setFile} /> */}
           </div>
           <div className="publish-section">
             <div>
@@ -169,13 +172,36 @@ const Publish = ({ token }) => {
         </form>
       ) : (
         <div className="publicated">
-          <p>Article publié !</p>
-          <div className="offer-preview">
-            <p>Titre : {offerpreview.title}</p>
-          </div>
+          <h1>Bravo, ton article est ajouté !</h1>
+
+          <Link to={`/offer/${offerpreview._id}`} className="offer-preview">
+            <div>
+              {offerpreview.product_image.secure_url && (
+                <img
+                  src={offerpreview.product_image.secure_url}
+                  alt={offerpreview.product_name}
+                />
+              )}
+            </div>
+            <div className="offer-preview-infos">
+              <p>Titre : {offerpreview.product_name}</p>
+              <p>Description : {offerpreview.product_description}</p>
+              <p>Prix : {offerpreview.product_price} €</p>
+            </div>
+          </Link>
+
           <button
             className="button-fill"
             onClick={() => {
+              setTitle("");
+              setBrand("");
+              setSize("");
+              setCity("");
+              setDescription("");
+              setColor("");
+              setCondition("");
+              setPrice(0);
+              setFile(null);
               setCreated(false);
             }}
           >
