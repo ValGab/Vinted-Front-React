@@ -13,7 +13,6 @@ const stripePromise = loadStripe(
 const Payment = ({ token }) => {
   const location = useLocation();
   const { id } = location.state;
-  console.log(id);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 

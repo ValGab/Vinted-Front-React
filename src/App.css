@@ -708,9 +708,16 @@ MEDIA Q
   .home-hero,
   .offer-body,
   .publish-form,
+  .payment-form,
   .publicated,
   .form {
     margin-top: 110px;
+  }
+
+  .payment-form,
+  .publicated,
+  .offer-preview {
+    width: 100%;
   }
 
   .mobile-top-header {
