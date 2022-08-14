@@ -1,9 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Navigate } from "react-router-dom";
-import Cookies from "js-cookie";
 
-const Login = ({ token, setToken, setUsername, setUserToken }) => {
+const Login = ({ token, setUserToken }) => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -38,13 +37,8 @@ const Login = ({ token, setToken, setUsername, setUserToken }) => {
                 }
               );
               // Création d'un cookie à la connexion !
-              setUserToken(response.data.token);
-              setUsername(
-                Cookies.set("username", response.data.account.username, {
-                  expires: 3,
-                })
-              );
-              navigate("/publish");
+              setUserToken(response.data.token, response.data.account.username);
+              navigate("/");
             } catch (error) {
               setError(error.response.data.message);
               setPassword("");

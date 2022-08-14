@@ -19,16 +19,20 @@ function App() {
   const [search, setSearch] = useState("");
   const [priceSort, setPriceSort] = useState("price-asc");
   const [priceMinMax, setPriceMinMax] = useState([0, 150]);
-  const [username, setUsername] = useState(Cookies.get("username") || null);
+  const [username, setUsername] = useState(Cookies.get("username") || "");
   const [token, setToken] = useState(Cookies.get("token") || null);
 
-  const setUserToken = (possibleToken) => {
+  const setUserToken = (possibleToken, possibleUsername) => {
     if (possibleToken === null) {
       Cookies.remove("token");
       setToken(null);
     } else {
       Cookies.set("token", possibleToken, { expires: 5 });
+      Cookies.set("username", possibleUsername, {
+        expires: 5,
+      });
       setToken(possibleToken);
+      setUsername(possibleUsername);
     }
   };
 
@@ -69,6 +73,8 @@ function App() {
                 token={token}
                 setToken={setToken}
                 setUserToken={setUserToken}
+                username={username}
+                setUsername={setUsername}
               />
             }
           />

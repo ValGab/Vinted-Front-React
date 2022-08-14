@@ -6,9 +6,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
 import Loader from "../components/Loader";
 import axios from "axios";
-const stripePromise = loadStripe(
-  "pk_test_51LWcWGCcxHLGTi1O5UyRC2bSRcoNgtWEJSZxCLfclfLmCW3KXNdKNXjs1DNp7CdfhNyzy02fouEMTTCPksGsJRkk00sQhmT5Ll"
-);
+require("dotenv").config(); // Permet d'activer les variables d'environnement qui se trouvent dans le fichier `.env`
+const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
 
 const Payment = ({ token }) => {
   const location = useLocation();

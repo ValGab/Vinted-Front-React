@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Signup = ({ token, setUserToken }) => {
-  const [username, setUsername] = useState("");
+const Signup = ({ token, setUserToken, username, setUsername }) => {
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
   const [newsletter, setNewsletter] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChangeUsername = (event) => {
     const value = event.target.value;
@@ -47,7 +47,8 @@ const Signup = ({ token, setUserToken }) => {
               setPassword("");
               setNewsletter(false);
               // Création d'un cookie à la création donc à la connexion !
-              setUserToken(response.data.token);
+              setUserToken(response.data.token, response.data.account.username);
+              navigate("/");
             } catch (error) {
               setError(error.response.data.message);
               setUsername("");
