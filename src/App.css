@@ -187,7 +187,6 @@ header img {
 }
 
 .home-hero-ready button,
-.offer-page-infos button,
 .form-inputs input[type="submit"] {
   font-size: 17px;
   width: 60%;
@@ -444,6 +443,16 @@ header img {
   line-height: 22px;
 }
 
+.offer-page-infos a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 17px;
+  height: 45px;
+}
+
 .owner-page-offer {
   display: flex;
   align-items: center;
@@ -461,10 +470,6 @@ header img {
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-}
-
-.offer-page-infos button {
-  width: 100%;
 }
 
 /* PUBLISH PAGE */
@@ -580,6 +585,78 @@ header img {
   font-size: 20px;
   line-height: 20px;
   font-weight: bold;
+}
+
+/* PAYMENT PAGE */
+
+.payment-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.payment-form {
+  padding: 15px;
+  width: 50%;
+  background-color: #ebedee;
+}
+
+.payment-form p {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.payment-form p span {
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.payment-form ul {
+  width: 100%;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.payment-form li,
+.total-payment {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-form span {
+  font-size: 16px;
+}
+
+.total-payment span {
+  font-weight: bold;
+  margin: 0 0 15px 0;
+}
+
+.total-payment {
+  border-bottom: 2px solid white;
+}
+
+.card {
+  margin-top: 40px;
+}
+
+.card button {
+  margin-top: 15px;
+  width: 100%;
+  border: none;
+  background-color: var(--main-color);
+  height: 35px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.payment-status {
+  font-weight: bold;
+  color: var(--main-color);
+  text-align: center;
 }
 
 /* FOOTER */
@@ -707,7 +784,7 @@ MEDIA Q
   }
 
   .offer-page-infos p,
-  .offer-page-infos button,
+  .offer-page-infos a,
   .details {
     margin: 15px 0;
   }

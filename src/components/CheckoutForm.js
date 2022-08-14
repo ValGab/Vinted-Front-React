@@ -1,55 +1,103 @@
 import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-
 import axios from "axios";
 
-const CheckoutForm = ({ amount, description }) => {
+const CheckoutForm = ({ price, description, token, title }) => {
   const stripe = useStripe();
   const elements = useElements();
-
   const [completed, setCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const buyerProtection = 0.4;
+  const deliveryFee = 0.8;
+
+  const amount = price + buyerProtection + deliveryFee;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // On récupère ici les données bancaires que l'utilisateur rentre
-    const cardElement = elements.getElement(CardElement);
+    setIsLoading(true);
+    try {
+      // On récupère ici les données bancaires que l'utilisateur rentre
+      const cardElement = elements.getElement(CardElement);
 
-    // Demande de création d'un token via l'API Stripe
-    // On envoie les données bancaires dans la requête
-    const stripeResponse = await stripe.createToken(cardElement, {
-      name: "L'id de l'acheteur",
-    });
-    const stripeToken = stripeResponse.token.id;
-    // console.log(stripeToken);
-    // Une fois le token reçu depuis l'API Stripe
-    // Requête vers notre serveur
-    // On envoie le token reçu depuis l'API Stripe
-    const response = await axios.post(
-      "https://vinted-val.herokuapp.com/offer/payment",
-      {
-        stripeToken,
-        amount,
-        description,
+      // Demande de création d'un token via l'API Stripe
+      // On envoie les données bancaires dans la requête
+      const stripeResponse = await stripe.createToken(cardElement, {
+        name: token,
+      });
+      const stripeToken = stripeResponse.token.id;
+      // console.log(stripeToken);
+      // Une fois le token reçu depuis l'API Stripe
+      // Requête vers notre serveur
+      // On envoie le token reçu depuis l'API Stripe
+      const response = await axios.post(
+        "https://vinted-val.herokuapp.com/offer/payment",
+        {
+          stripeToken,
+          amount,
+          description,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(response.data);
+      setIsLoading(false);
+      // Si la réponse du serveur est favorable, la transaction a eu lieu
+      if (response.status === 200) {
+        setCompleted(true);
       }
-    );
-    console.log(response.data);
-    // Si la réponse du serveur est favorable, la transaction a eu lieu
-    if (response.data.status === "succeeded") {
-      setCompleted(true);
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
   return (
-    <>
-      {!completed ? (
-        <form onSubmit={handleSubmit}>
-          <CardElement />
-          <button type="submit">Valider</button>
-        </form>
-      ) : (
-        <span>Paiement effectué !</span>
-      )}
-    </>
+    <div className="container">
+      <div className="payment-div">
+        <div className="payment-form">
+          <p>Résumé de la commande</p>
+          <ul>
+            <li>
+              <span>Commande</span>
+              <span>{price.toFixed(2)} €</span>
+            </li>
+            <li>
+              <span>Frais de protection acheteurs</span>
+              <span>{buyerProtection.toFixed(2)} €</span>
+            </li>
+            <li>
+              <span>Frais de port</span>
+              <span>{deliveryFee.toFixed(2)} €</span>
+            </li>
+          </ul>
+          <div className="total-payment">
+            <span>Total</span>
+            <span>{amount.toFixed(2)} €</span>
+          </div>
+          {isLoading ? (
+            <p className="payment-status">Paiement en cours...</p>
+          ) : !completed ? (
+            <div>
+              <p>
+                Il ne vous reste plus qu'une étape pour vous offrir{" "}
+                <span>{title}</span>. Vous allez payer{" "}
+                <span>{amount.toFixed(2)} €</span> (frais de protection et frais
+                de port inclus).
+              </p>
+              <form className="card" onSubmit={handleSubmit}>
+                <CardElement />
+                <button type="submit">Payer</button>
+              </form>
+            </div>
+          ) : (
+            <p className="payment-status">Paiement effectué !</p>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

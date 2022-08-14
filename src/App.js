@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
+import Payment from "./pages/Payment";
 import Cookies from "js-cookie";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faXmark, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -87,6 +88,7 @@ function App() {
             path="/publish"
             element={<Publish token={token} setToken={setToken} />}
           />
+          <Route path="/payment" element={<Payment token={token} />} />
         </Routes>
         <Footer />
       </Router>
