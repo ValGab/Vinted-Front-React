@@ -1,5 +1,5 @@
 import logo from "../assets/img/logo-vinted.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Cookies from "js-cookie";
@@ -24,6 +24,8 @@ const Header = ({
     const value = event.target.value;
     setSearch(value);
   };
+
+  const location = useLocation();
 
   return (
     <header className="container">
@@ -53,35 +55,37 @@ const Header = ({
               onChange={handleChange}
             />
           </div>
-          <div className="price-filters">
-            <div className="price-sort">
-              <span>Trier par prix : </span>
-              {priceSort === "price-desc" && (
-                <button
-                  className="button-fill"
-                  onClick={() => {
-                    setPriceSort("price-asc");
-                  }}
-                >
-                  croissant
-                </button>
-              )}
-              {priceSort === "price-asc" && (
-                <button
-                  className="button-fill"
-                  onClick={() => {
-                    setPriceSort("price-desc");
-                  }}
-                >
-                  décroissant
-                </button>
-              )}
+          {location.pathname === "/" && (
+            <div className="price-filters">
+              <div className="price-sort">
+                <span>Trier par prix : </span>
+                {priceSort === "price-desc" && (
+                  <button
+                    className="button-fill"
+                    onClick={() => {
+                      setPriceSort("price-asc");
+                    }}
+                  >
+                    croissant
+                  </button>
+                )}
+                {priceSort === "price-asc" && (
+                  <button
+                    className="button-fill"
+                    onClick={() => {
+                      setPriceSort("price-desc");
+                    }}
+                  >
+                    décroissant
+                  </button>
+                )}
+              </div>
+              <TwoThumbs
+                priceMinMax={priceMinMax}
+                setPriceMinMax={setPriceMinMax}
+              />
             </div>
-            <TwoThumbs
-              priceMinMax={priceMinMax}
-              setPriceMinMax={setPriceMinMax}
-            />
-          </div>
+          )}
         </div>
         {!token ? (
           <div className="register">

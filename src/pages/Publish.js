@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 // import Dropzone from "../components/Dropzone";
 
 const Publish = ({ token }) => {
@@ -15,6 +16,7 @@ const Publish = ({ token }) => {
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
   const [created, setCreated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [offerpreview, setOfferpreview] = useState(null);
 
   return !token ? (
@@ -26,6 +28,7 @@ const Publish = ({ token }) => {
           className="publish-form"
           onSubmit={async (event) => {
             event.preventDefault();
+            setIsLoading(true);
             const formData = new FormData();
             formData.append("picture", file);
             formData.append("title", title);
@@ -53,6 +56,7 @@ const Publish = ({ token }) => {
             } catch (error) {
               console.log(error.response);
             }
+            setIsLoading(false);
           }}
         >
           <h1>Vends ton article</h1>
@@ -170,6 +174,8 @@ const Publish = ({ token }) => {
           </div>
           <button className="button-fill">Ajouter</button>
         </form>
+      ) : isLoading ? (
+        <Loader />
       ) : (
         <div className="publicated">
           <h1>Bravo, ton article est ajouté !</h1>

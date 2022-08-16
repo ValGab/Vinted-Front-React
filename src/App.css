@@ -186,7 +186,7 @@ header img {
   margin-bottom: 15px;
 }
 
-.home-hero-ready button,
+.button-hero,
 .form-inputs input[type="submit"] {
   font-size: 17px;
   width: 60%;
@@ -195,7 +195,11 @@ header img {
   background-color: var(--main-color);
   border: none;
   border-radius: 5px;
+  text-decoration: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-inputs input[type="submit"] {
@@ -816,7 +820,7 @@ MEDIA Q
     font-size: 24px;
   }
 
-  .home-hero-ready button {
+  .button-hero {
     width: 100%;
     line-height: 30px;
   }

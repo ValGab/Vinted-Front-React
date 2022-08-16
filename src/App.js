@@ -1,6 +1,11 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Publish from "./pages/Publish";
@@ -15,10 +20,20 @@ import { faBars, faXmark, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faBars, faXmark, faSearch);
 
+// Create a custom hook that uses both useLocation and useEffect
+const useScrollToTop = () => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    // scroll to the top of the browser window when changing route
+    // the window object is a normal DOM object and is safe to use in React.
+  }, [location]);
+};
+
 function App() {
   const [search, setSearch] = useState("");
   const [priceSort, setPriceSort] = useState("price-asc");
-  const [priceMinMax, setPriceMinMax] = useState([0, 150]);
+  const [priceMinMax, setPriceMinMax] = useState([0, 200]);
   const [username, setUsername] = useState(Cookies.get("username") || "");
   const [token, setToken] = useState(Cookies.get("token") || null);
 
@@ -65,7 +80,10 @@ function App() {
               />
             }
           />
-          <Route path="/offer/:id" element={<Offer />} />
+          <Route
+            path="/offer/:id"
+            element={<Offer useScrollToTop={useScrollToTop} />}
+          />
           <Route
             path="/signup"
             element={

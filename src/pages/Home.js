@@ -87,7 +87,9 @@ const Home = ({ search, setSearch, priceSort, priceMinMax }) => {
         <div className="container">
           <div className="home-hero-ready">
             <p>Prêts à faire du tri dans vos placards ?</p>
-            <button>Commencer à vendre</button>
+            <Link to="/publish" className="button-hero">
+              Commencer à vendre
+            </Link>
           </div>
         </div>
       </div>

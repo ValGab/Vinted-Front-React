@@ -19,7 +19,7 @@ const Login = ({ token, setUserToken }) => {
   };
 
   return token ? (
-    <Navigate to="/" />
+    <Navigate to={"/"} />
   ) : (
     <div className="form container">
       <h1>Se connecter</h1>

@@ -4,7 +4,7 @@ import axios from "axios";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 
-const Offer = () => {
+const Offer = ({ useScrollToTop }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
@@ -24,6 +24,8 @@ const Offer = () => {
 
     fetchData();
   }, [id]);
+
+  useScrollToTop();
 
   return (
     <div className="offer-body">
