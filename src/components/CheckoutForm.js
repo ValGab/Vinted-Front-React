@@ -23,7 +23,7 @@ const CheckoutForm = ({ price, description, token, title }) => {
       // Demande de création d'un token via l'API Stripe
       // On envoie les données bancaires dans la requête
       const stripeResponse = await stripe.createToken(cardElement, {
-        name: token,
+        name: "token",
       });
       console.log("Stripe response =>", stripeResponse);
       const stripeToken = stripeResponse.token.id;
