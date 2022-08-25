@@ -6,15 +6,15 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
 import Loader from "../components/Loader";
 import axios from "axios";
-const stripePromise = loadStripe(
-  "pk_test_51LWcWGCcxHLGTi1Oxb9m1xEf9JTuTFcgCyWo8BYJrRlr21tsTL4jiTO2HMregphxs8E392lVyNLWVnQJIOh1DMoD00t3mJR60j"
-);
 
 const Payment = ({ token }) => {
   const location = useLocation();
   const { id } = location.state;
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const stripePromise = loadStripe(
+    "pk_test_51LWcWGCcxHLGTi1Oxb9m1xEf9JTuTFcgCyWo8BYJrRlr21tsTL4jiTO2HMregphxs8E392lVyNLWVnQJIOh1DMoD00t3mJR60j"
+  );
 
   useEffect(() => {
     const fetchData = async () => {
