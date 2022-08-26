@@ -79,7 +79,26 @@ const CheckoutForm = ({ price, description, token, title }) => {
             <span>Total</span>
             <span>{amount.toFixed(2)} €</span>
           </div>
-          {isLoading ? (
+          {completed ? (
+            <p className="payment-status">Paiement effectué !</p>
+          ) : (
+            <form className="card" onSubmit={handleSubmit}>
+              <p>
+                Il ne vous reste plus qu'une étape pour vous offrir{" "}
+                <span>{title}</span>. Vous allez payer{" "}
+                <span>{amount.toFixed(2)} €</span> (frais de protection et frais
+                de port inclus).
+              </p>
+              <CardElement />
+
+              {isLoading ? (
+                <p className="payment-status">Paiement en cours...</p>
+              ) : (
+                <button type="submit">Payer</button>
+              )}
+            </form>
+          )}
+          {/* {isLoading ? (
             <p className="payment-status">Paiement en cours...</p>
           ) : !completed ? (
             <div>
@@ -96,7 +115,7 @@ const CheckoutForm = ({ price, description, token, title }) => {
             </div>
           ) : (
             <p className="payment-status">Paiement effectué !</p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
