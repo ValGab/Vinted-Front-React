@@ -19,7 +19,7 @@ A site made with React inspired by Vinted.
 
 <img src="./src/assets/img/preview/vinted3.jpg" alt="vinted payment"/>
 
-<img src="./src/assets/img/preview/vinted3.jpg" alt="vinted create offer"/>
+<img src="./src/assets/img/preview/vinted4.jpg" alt="vinted create offer"/>
 
 ## Available Scripts
 
