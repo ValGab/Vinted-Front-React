@@ -209,9 +209,11 @@ header img {
 /* OFFERS */
 
 .limit {
-  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
+  height: 30px;
+  width: 100%;
 }
 
 .limit select {
@@ -234,6 +236,7 @@ header img {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+  height: 10px;
 }
 
 .page-list li {

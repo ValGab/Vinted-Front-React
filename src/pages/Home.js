@@ -94,17 +94,19 @@ const Home = ({ search, setSearch, priceSort, priceMinMax }) => {
         </div>
       </div>
       <div className="limit container">
-        <select value={limit} onChange={handleChangeLimit}>
-          {/* Map sur les dizaines du tableau limit */}
-          {arrayLimit.length >= 1 &&
-            arrayLimit.map((element, index) => {
-              return (
-                <option key={index} value={element}>
-                  {element}
-                </option>
-              );
-            })}
-        </select>
+        {arrayLimit.length >= 1 && (
+          <select value={limit} onChange={handleChangeLimit}>
+            {/* Map sur les dizaines du tableau limit */}
+            {arrayLimit.length >= 1 &&
+              arrayLimit.map((element, index) => {
+                return (
+                  <option key={index} value={element}>
+                    {element}
+                  </option>
+                );
+              })}
+          </select>
+        )}
       </div>
       {/* Map sur les numéros de page */}
       <ul className="page-list container">
