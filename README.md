@@ -1,13 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 # Vinted Front
 
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+
 <img src="https://api.netlify.com/api/v1/badges/442c11d2-e86f-4974-b2ac-c08e8b233569/deploy-status"> : <a href="https://musical-mousse-7cee82.netlify.app/" target="_blank">https://musical-mousse-7cee82.netlify.app/</a>
 
 A site made with React inspired by Vinted.
 
-<img src="./assets/img/preview/vinted1.jpg" alt="vinted front"/>
+<img src="./src/assets/img/preview/vinted1.jpg" alt="vinted front"/>
 
 ## Features
 
@@ -16,11 +15,11 @@ A site made with React inspired by Vinted.
 - Create an offer
 - Payment with Stripe (use CC number : 4242 4242 4242 4242 - 04/24 - 242 - 42424 to test)
 
-<img src="./assets/img/preview/vinted2.jpg" alt="vinted offer page"/>
+<img src="./src/assets/img/preview/vinted2.jpg" alt="vinted offer page"/>
 
-<img src="./assets/img/preview/vinted3.jpg" alt="vinted payment"/>
+<img src="./src/assets/img/preview/vinted3.jpg" alt="vinted payment"/>
 
-<img src="./assets/img/preview/vinted3.jpg" alt="vinted create offer"/>
+<img src="./src/assets/img/preview/vinted3.jpg" alt="vinted create offer"/>
 
 ## Available Scripts
 
