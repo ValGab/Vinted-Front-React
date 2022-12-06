@@ -42,7 +42,7 @@ const Publish = ({ token }) => {
 
             try {
               const response = await axios.post(
-                "https://vinted-val.herokuapp.com/offer/publish",
+                "https://vinted-back.onrender.com/offer/publish",
                 formData,
                 {
                   headers: {
