@@ -64,7 +64,7 @@ const Home = ({ search, setSearch, priceSort, priceMinMax }) => {
         }
 
         const response = await axios.get(
-          `https://vinted-back.onrender.com/offers${query}`
+          `https://vinted-app.vercel.app/offers${query}`
         );
         setData(response.data);
         setIsLoading(false);
