@@ -13,7 +13,7 @@ const Offer = ({ useScrollToTop }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://vinted-back.onrender.com/offer/${id}`
+          `https://vinted-app.vercel.app/offer/${id}`
         );
         setData(response.data);
         setIsLoading(false);

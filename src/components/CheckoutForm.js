@@ -32,7 +32,7 @@ const CheckoutForm = ({ price, description, token, title }) => {
       // Requête vers notre serveur
       // On envoie le token reçu depuis l'API Stripe
       const response = await axios.post(
-        "https://vinted-back.onrender.com/offer/payment",
+        "https://vinted-app.vercel.app/offer/payment",
         {
           stripeToken,
           amount,

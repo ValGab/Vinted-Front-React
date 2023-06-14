@@ -30,7 +30,7 @@ const Login = ({ token, setUserToken }) => {
           const fetchData = async () => {
             try {
               const response = await axios.post(
-                "https://vinted-back.onrender.com/user/login",
+                "https://vinted-app.vercel.app/user/login",
                 {
                   email: mail,
                   password: password,

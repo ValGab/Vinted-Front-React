@@ -42,7 +42,7 @@ const Publish = ({ token }) => {
 
             try {
               const response = await axios.post(
-                "https://vinted-back.onrender.com/offer/publish",
+                "https://vinted-app.vercel.app/offer/publish",
                 formData,
                 {
                   headers: {
